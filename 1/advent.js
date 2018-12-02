@@ -6,9 +6,6 @@ let dataset = fs.readFileSync("input.txt", "utf8");
 get_frequency_total = (dataset) => {
     const deltas = input.split(/\n/g);
     deltas.forEach(delta => final_frequency += parseInt(frequency_delta))
-    for (let delta of deltas) {
-        
-    }
     return final_frequency;
 }
 
