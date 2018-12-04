@@ -1,15 +1,15 @@
 const fs = require("fs");
-const frequency_dataset = JSON.parse(fs.readFileSync('data.json', 'utf8'));
 
-let dataset = fs.readFileSync("input.txt", "utf8");
+let dataset = fs.readFileSync("1/input.txt", "utf8");
 
-get_frequency_total = (dataset) => {
-    const deltas = input.split(/\n/g);
-    deltas.forEach(delta => final_frequency += parseInt(frequency_delta))
+get_frequency_total = dataset => {
+    let final_frequency = 0;
+    const deltas = dataset.split(/\n/g);
+    deltas.forEach(delta => final_frequency += parseInt(delta))
     return final_frequency;
 }
 
-get_first_dupplicate = (input) => {
+get_first_dupplicate = input => {
     const deltas = input.split(/\n/g);
     const seen = {};
     let frequency = 0;
@@ -21,11 +21,9 @@ get_first_dupplicate = (input) => {
             seen[frequency] = true;
         }
     }
-};
+}
 
-//let res1 = get_frequency_total(dataset);
-let res2 = get_first_dupplicate(dataset);
-
-console.log("=== Results ===")
-//console.log(`1: ${res1}`);
-console.log(`2: ${res2}`);
+module.exports = {
+    part_1: () => get_frequency_total(dataset),
+    part_2: () => get_first_dupplicate(dataset)
+}

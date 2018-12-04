@@ -1,7 +1,7 @@
 /* https://adventofcode.com/2018/day/3 */
 const fs = require("fs");
 
-let dataset = fs.readFileSync("input.txt", "utf8");
+let dataset = fs.readFileSync("3/input.txt", "utf8");
 const sections = dataset.split(/\n/g);
 
 let fabric = [];
@@ -33,13 +33,20 @@ for (let x in fabric) {
         if (fabric[x][y] > 1) claims++; 
     }
 }
-console.log(`There were ${claims} square inches claimed by multible cut-out suggestions.`)
 
-for (let id in rectagles) {
-    let rectangle = rectagles[id];
-    let no_found = false;
-    for (let coordinate of rectangle){
-        if (fabric[coordinate.x][coordinate.y] > 1) no_found = true;
+var find_non_overlapping_rect = rectangles => {
+    for (let id in rectagles) {
+        let rectangle = rectagles[id];
+        let no_found = false;
+        for (let coordinate of rectangle){
+            if (fabric[coordinate.x][coordinate.y] > 1) no_found = true;
+        }
+        if(!no_found) return id;
     }
-    if(!no_found) console.log(`The non-overlapping section has id ${id}`)
+}
+
+module.exports = {
+    part_1: () => claims,
+    part_2: () => find_non_overlapping_rect(rectagles),
+
 }

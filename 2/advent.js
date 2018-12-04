@@ -26,13 +26,13 @@ let find_related_candidate = candidates => {
             if (discrepancy_indecies.length === 1) {
                 let index = discrepancy_indecies[0];
                 let result = common_chars.join(""); 
-                return  `${candidate} -> ${partner_candidate} had a discrepancy ${candidate[discrepancy_indecies[0]]}/${partner_candidate[discrepancy_indecies[0]]} position ${discrepancy_indecies[0]}. Result is ${result}`;
+                return result;
             }
         }
     }
 }
 
-let dataset = fs.readFileSync("input.txt", "utf8");
+let dataset = fs.readFileSync("2/input.txt", "utf8");
 let double_count = 0;
 let triple_count = 0;
 let final_box_candidates = [];
@@ -59,10 +59,7 @@ for (let box_id of box_ids) {
     }
 }
 
-// Part 1
-console.log(`Found ${double_count} instances of two identical characters.`)
-console.log(`Found ${triple_count} instances of three identical characters.`)
-console.log(`Checksum: ${double_count * triple_count}`)
-
-// Part 2
-console.log(find_related_candidate(final_box_candidates))
+module.exports = {
+    part_1: () => `${double_count * triple_count}`,
+    part_2: () => find_related_candidate(final_box_candidates)
+}
