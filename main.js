@@ -7,7 +7,7 @@ var get_puzzle_input = async day => {
         let cookie_file = fs.readFileSync("../cookie.secret", "utf8");
         let cookie = request.cookie(`session=${cookie_file}`);
         let cookie_jar = request.jar();
-        let url = `https://adventofcode.com/2018/day/${day}/input`
+        let url = `https://adventofcode.com/2018/day/${day}/input`;
         cookie_jar.setCookie(cookie, url);
         request({url: url, jar: cookie_jar}, (error, response, body) => error ? reject(error) : resolve(body.split(/\n/g)));
     }).catch(error => console.error(error));
