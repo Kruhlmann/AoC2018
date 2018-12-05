@@ -7,13 +7,11 @@ var get_puzzle_input = async day => {
         let cookie_file = fs.readFileSync("../cookie.secret", "utf8");
         let cookie = request.cookie(`session=${cookie_file}`);
         let cookie_jar = request.jar();
-        let url = `https://adventofcode.com/2018/day/${day}/input`
+        let url = `https://adventofcode.com/2018/day/${day}/input`;
         cookie_jar.setCookie(cookie, url);
         request({url: url, jar: cookie_jar}, (error, response, body) => error ? reject(error) : resolve(body.split(/\n/g)));
     }).catch(error => console.error(error));
 }
-
-var minute_diff = (d1, d2) => moment(d1, "YYYY-MM-DD HH:mm").diff(moment(d2, "YYYY-MM-DD HH:mm"), "minutes");
 
 var sort_events = events => {
     let split_events = {};
@@ -53,13 +51,11 @@ var get_guard_favorite_minute = guard => {
 var get_punctilious_guard = guards => {
     let highest_count_guard_id = "";
     let highest_count = -1;
-    let highest_count_minute = -1;
     for (let id in guards) {
         let guard = guards[id];
         if (guard.favorite_minute.count > highest_count) {
             highest_count_guard_id = id;
             highest_count = guard.favorite_minute.count;
-            highest_count_minute = guard.favorite_minute.minute;
         }
     }
     return highest_count_guard_id;
